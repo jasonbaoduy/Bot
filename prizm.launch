@@ -1,0 +1,15 @@
+<launch>
+<!-- Example: map -> base_link static transform -->
+<param name="robot_description" textfile="$(find prizm_ros)/urdf/prizm_robot.urdf" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+    <!-- Serial node to communicate with arduino -->
+    <node pkg="rosserial_python" type="serial_node.py" name="serial_node">
+        <!-- Change the 'value' parameter of the line below -->
+        <!-- run `ls /dev/serial/by-id` to get the id of your Arduino -->
+        <param name="port" value="/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AH05PHOB-if00-port0" />
+        <param name="baud" value="57600"/>
+    </node>
+
+</launch>

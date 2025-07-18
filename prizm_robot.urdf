@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<robot name="prizm robot">
+
+<link name="base_link">
+  <visual>
+    <!-- Left bar -->
+    <geometry>
+      <box size="0.03 0.2 0.05"/>
+    </geometry>
+    <origin xyz="0.135 0 0.08" rpy="0 0 0"/>
+    <material name="white">
+      <color rgba="1 1 1 1"/>
+    </material>
+  </visual>
+
+  <visual>
+    <!-- Right bar -->
+    <geometry>
+      <box size="0.03 0.2 0.05"/>
+    </geometry>
+    <origin xyz="-0.135 0 0.08" rpy="0 0 0"/>
+  </visual>
+
+  <visual>
+    <!-- Top bar -->
+    <geometry>
+      <box size="0.24 0.03 0.05"/>
+    </geometry>
+    <origin xyz="0 0.085 0.08" rpy="0 0 0"/>
+  </visual>
+
+  <visual>
+    <!-- Bottom bar -->
+    <geometry>
+      <box size="0.24 0.03 0.05"/>
+    </geometry>
+    <origin xyz="0 -0.085 0.08" rpy="0 0 0"/>
+  </visual>
+</link>
+
+<!-- Left Wheel -->
+<link name="left_wheel">
+  <visual>
+    <geometry>
+      <cylinder radius="0.05" length="0.02"/>
+    </geometry>
+    <origin xyz="0 0 0" rpy="0 0 1.5708"/>
+    <material name="black">
+      <color rgba="0.1 0.1 0.1 1"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="left_wheel_joint" type="continuous">
+  <parent link="base_link"/>
+  <child link="left_wheel"/>
+  <origin xyz="0.0 -0.11 0.05" rpy="1.5708 0 0"/>
+  <axis xyz="1 0 0"/>
+</joint>
+
+<!-- Right Wheel -->
+<link name="right_wheel">
+  <visual>
+    <geometry>
+      <cylinder radius="0.05" length="0.02"/>
+    </geometry>
+    <origin xyz="0 -0.01 0" rpy="1.5708 0 0"/>
+    <material name="black">
+      <color rgba="0.1 0.1 0.1 1"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="right_wheel_joint" type="continuous">
+  <parent link="base_link"/>
+  <child link="right_wheel"/>
+  <origin xyz="0.0 0.12 0.05" rpy="0 0 0"/>
+  <axis xyz="1 0 0"/>
+</joint>
+
+<!-- Rear support -->
+<link name="rear_link">
+  <visual>
+    <geometry>
+      <cylinder radius="0.05" length="0.02"/>
+    </geometry>
+    <origin xyz="0.16 0 0.05" rpy="0 1.5708 0"/>
+    <material name="black">
+      <color rgba="0.1 0.1 0.1 1"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="rear_joint" type="continuous">
+  <parent link="base_link"/>
+  <child link="rear_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
+<!-- Rear Stick -->
+<link name="rear_stick_link">
+  <visual>
+    <geometry>
+      <box size="0.3 0.02 0.02"/>
+    </geometry>
+    <origin xyz="0.14 0 0.06" rpy="0 0 1.5708"/>
+    <material name="grey">
+      <color rgba="0.6 0.6 0.6 1"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="rear_stick_joint1" type="fixed">
+  <parent link="base_link"/>
+  <child link="rear_stick_link"/>
+  <origin xyz="0 0 0.05" rpy="0 0 0"/>
+</joint>
+
+<!-- Rear Stick -->
+<link name="rear_stick_link1">
+  <visual>
+    <geometry>
+      <box size="0.3 0.02 0.02"/>
+    </geometry>
+    <origin xyz="-0.11 0 0.06" rpy="0 0 1.5708"/>
+    <material name="grey">
+      <color rgba="0.6 0.6 0.6 1"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="rear_stick_joint2" type="fixed">
+  <parent link="base_link"/>
+  <child link="rear_stick_link1"/>
+  <origin xyz="0 0 0.05" rpy="0 0 0"/>
+</joint>
+
+<!-- Rear Stick -->
+<link name="rear_stick_link2">
+  <visual>
+    <geometry>
+      <box size="0.3 0.02 0.02"/>
+    </geometry>
+    <origin xyz="-0.04 0 0.06" rpy="0 0 1.5708"/>
+    <material name="grey">
+      <color rgba="0.6 0.6 0.6 1"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="rear_stick_joint3" type="fixed">
+  <parent link="base_link"/>
+  <child link="rear_stick_link2"/>
+  <origin xyz="0 0 0.05" rpy="0 0 0"/>
+</joint>
+
+<!-- Camera Pole -->
+<link name="camera_pole_link">
+  <visual>
+    <geometry>
+      <box size="0.35 0.02 0.02"/>
+    </geometry>
+    <origin xyz="0 0 0.175" rpy="0 1.5708 0"/>
+    <material name="white">
+      <color rgba="1 1 1 1"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="camera_pole_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="camera_pole_link"/>
+  <origin xyz="-0.13 0 0.06" rpy="0 0 0"/>
+</joint>
+
+<!-- Camera -->
+<link name="camera">
+  <visual>
+    <geometry>
+      <box size="0.05 0.10 0.05"/>
+    </geometry>
+    <origin xyz="-0.045 0 0.15" rpy="0 0 0"/>
+    <material name="white">
+      <color rgba="1 1 1 1"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="camera_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="camera"/>
+  <origin xyz="-0.21 0 0.24" rpy="0 0 0"/>
+</joint>
+
+<joint name="camera_mount_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="camera_mount"/>
+  <origin xyz="-0.15 0 0.26" rpy="0 0 0"/>
+</joint>
+
+<link name="camera_mount">
+  <visual>
+    <geometry>
+      <box size="0.05 0.05 0.01"/>
+    </geometry>
+    <origin xyz="-0.015 0 0.125" rpy="0 1.5708 0"/>
+    <material name="white">
+      <color rgba="1 1 1 1"/>
+    </material> 
+  </visual>
+</link>
+
+<!-- Laser Scanner -->
+<link name="laser">
+  <visual>
+    <geometry>
+      <cylinder radius="0.03" length="0.02"/>
+    </geometry>
+    <origin xyz="-0.1 0 0.03" rpy="0 0 0"/>
+    <material name="black">
+      <color rgba="0.1 0.1 0.1 1"/>
+    </material>
+  </visual>
+</link>
+
+<joint name="laser_joint" type="fixed">
+  <parent link="camera_pole_link"/>
+  <child link="laser"/>
+  <origin xyz="0.05 0 -0.01" rpy="0 0 0"/>
+</joint>
+
+  <!-- Base Footprint -->
+  <link name="base_footprint"/>
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+</robot>

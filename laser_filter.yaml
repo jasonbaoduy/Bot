@@ -1,0 +1,19 @@
+scan_filter_chain:
+  - name: angle
+    type: laser_filters/ScanAngleFilter
+    params:
+      lower_angle: -1.57    # 90 degrees
+      upper_angle: 1.57     # 90 degrees
+
+  - name: range
+    type: laser_filters/ScanRangeFilter
+    params:
+      lower_threshold: 0.20    # Increased to ignore very close reflections
+      upper_threshold: 4.0     # Slightly extended for longer corridors
+      lower_replacement_value: 0.0
+      upper_replacement_value: 0.0
+
+  - name: noise_filter
+    type: laser_filters/ScanNoiseFilter
+    params:
+      threshold: 0.05  # Tighten noise filter threshold
